@@ -5,12 +5,11 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class SequenceMatchingTest {
+internal class RouteFindingTest {
 
     companion object {
         @JvmStatic
         fun routes(): List<Arguments> {
-
             val mapSingle = UniversityMap()
             mapSingle.addRoom("101")
 
@@ -30,7 +29,10 @@ internal class SequenceMatchingTest {
     @MethodSource("routes")
     fun testRouteFinding(map: UniversityMap, start: String, finish: String, expectedRoute: Array<Int>) {
         val actualRoute = findRoute(map, start, finish)
-        Assertions.assertArrayEquals(expectedRoute, actualRoute, "Routes don't equal! " +
-            "Actual route is $actualRoute, but expected route is $expectedRoute")
+        Assertions.assertArrayEquals(
+            expectedRoute,
+            actualRoute,
+            "Routes don't equal! Actual route is $actualRoute, but expected route is $expectedRoute"
+        )
     }
 }
