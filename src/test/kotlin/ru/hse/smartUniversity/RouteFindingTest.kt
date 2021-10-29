@@ -9,19 +9,25 @@ internal class SequenceMatchingTest {
 
     companion object {
         @JvmStatic
-        fun routs(): List<Arguments> {
+        fun routes(): List<Arguments> {
 
             val mapSingle = UniversityMap()
             mapSingle.addRoom("101")
 
+            val mapTwoRooms = UniversityMap()
+            mapTwoRooms.addRoom("101")
+            mapTwoRooms.addRoom("102")
+            mapTwoRooms.connect("101", "102")
+
             return listOf(
                 Arguments.of(mapSingle, "101", "101", emptyArray<Int>()),
+                Arguments.of(mapTwoRooms, "101", "102", intArrayOf(102)),
             )
         }
     }
 
     @ParameterizedTest
-    @MethodSource("routs")
+    @MethodSource("routes")
     fun testRouteFinding(map: UniversityMap, start: String, finish: String, expectedRoute: Array<Int>) {
         val actualRoute = findRoute(map, start, finish)
         Assertions.assertArrayEquals(expectedRoute, actualRoute, "Routes don't equal! " +
