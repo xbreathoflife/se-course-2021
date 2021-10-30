@@ -18,9 +18,19 @@ internal class RouteFindingTest {
             mapTwoRooms.addRoom("102")
             mapTwoRooms.connect("101", "102")
 
+            val mapLineRooms = UniversityMap()
+            mapLineRooms.addRoom("101")
+            mapLineRooms.addRoom("102")
+            mapLineRooms.addRoom("103")
+            mapLineRooms.addRoom("104")
+            mapTwoRooms.connect("101", "102")
+            mapTwoRooms.connect("102", "103")
+            mapTwoRooms.connect("103", "104")
+
             return listOf(
                 Arguments.of(mapSingle, "101", "101", emptyArray<Int>()),
                 Arguments.of(mapTwoRooms, "101", "102", arrayOf(102)),
+                Arguments.of(mapTwoRooms, "101", "104", arrayOf(102, 103, 104)),
             )
         }
     }
