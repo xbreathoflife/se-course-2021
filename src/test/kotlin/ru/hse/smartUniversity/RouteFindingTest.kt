@@ -28,16 +28,16 @@ internal class RouteFindingTest {
             mapTwoRooms.connect("103", "104")
 
             return listOf(
-                Arguments.of(mapSingle, "101", "101", emptyArray<Int>()),
-                Arguments.of(mapTwoRooms, "101", "102", arrayOf(102)),
-                Arguments.of(mapTwoRooms, "101", "104", arrayOf(102, 103, 104)),
+                Arguments.of(mapSingle, "101", "101", emptyArray<String>()),
+                Arguments.of(mapTwoRooms, "101", "102", arrayOf("102")),
+                Arguments.of(mapTwoRooms, "101", "104", arrayOf("102", "103", "104")),
             )
         }
     }
 
     @ParameterizedTest
     @MethodSource("routes")
-    fun testRouteFinding(map: UniversityMap, start: String, finish: String, expectedRoute: Array<Int>) {
+    fun testRouteFinding(map: UniversityMap, start: String, finish: String, expectedRoute: Array<String>) {
         val actualRoute = findRoute(map, start, finish)
         Assertions.assertArrayEquals(
             expectedRoute,
