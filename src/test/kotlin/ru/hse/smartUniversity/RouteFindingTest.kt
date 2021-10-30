@@ -20,7 +20,7 @@ internal class RouteFindingTest {
 
             return listOf(
                 Arguments.of(mapSingle, "101", "101", emptyArray<Int>()),
-                Arguments.of(mapTwoRooms, "101", "102", intArrayOf(102)),
+                Arguments.of(mapTwoRooms, "101", "102", arrayOf(102)),
             )
         }
     }
