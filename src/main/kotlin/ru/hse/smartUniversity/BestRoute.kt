@@ -6,7 +6,7 @@ fun findRoute(map: UniversityMap, start: String, finish: String): List<String> {
     var curRoom = start
     while (curRoom != finish) {
         visited.add(curRoom)
-        for (room in map.neighbors(curRoom)) {
+        for (room in map.neighbors(curRoom).reversed()) {
             if (!visited.contains(room)) {
                 curRoom = room
                 break

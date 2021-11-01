@@ -40,6 +40,7 @@ internal class RouteFindingTest {
                 Arguments.of(mapTwoRooms, "101", "102", arrayListOf("102")),
                 Arguments.of(mapLineRooms, "101", "104", arrayListOf("102", "103", "104")),
                 Arguments.of(mapCycle, "101", "103", arrayListOf("103")),
+                Arguments.of(mapCycle, "101", "102", arrayListOf("102"))
             )
         }
     }
