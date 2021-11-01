@@ -23,23 +23,32 @@ internal class RouteFindingTest {
             mapLineRooms.addRoom("102")
             mapLineRooms.addRoom("103")
             mapLineRooms.addRoom("104")
-            mapTwoRooms.connect("101", "102")
-            mapTwoRooms.connect("102", "103")
-            mapTwoRooms.connect("103", "104")
+            mapLineRooms.connect("101", "102")
+            mapLineRooms.connect("102", "103")
+            mapLineRooms.connect("103", "104")
+
+            val mapCycle = UniversityMap()
+            mapCycle.addRoom("101")
+            mapCycle.addRoom("102")
+            mapCycle.addRoom("103")
+            mapCycle.connect("101", "102")
+            mapCycle.connect("102", "103")
+            mapCycle.connect("103", "101")
 
             return listOf(
-                Arguments.of(mapSingle, "101", "101", emptyArray<String>()),
-                Arguments.of(mapTwoRooms, "101", "102", arrayOf("102")),
-                Arguments.of(mapTwoRooms, "101", "104", arrayOf("102", "103", "104")),
+                Arguments.of(mapSingle, "101", "101", emptyList<String>()),
+                Arguments.of(mapTwoRooms, "101", "102", arrayListOf("102")),
+                Arguments.of(mapLineRooms, "101", "104", arrayListOf("102", "103", "104")),
+                Arguments.of(mapCycle, "101", "103", arrayListOf("103")),
             )
         }
     }
 
     @ParameterizedTest
     @MethodSource("routes")
-    fun testRouteFinding(map: UniversityMap, start: String, finish: String, expectedRoute: Array<String>) {
+    fun testRouteFinding(map: UniversityMap, start: String, finish: String, expectedRoute: List<String>) {
         val actualRoute = findRoute(map, start, finish)
-        Assertions.assertArrayEquals(
+        Assertions.assertEquals(
             expectedRoute,
             actualRoute,
             "Routes don't equal! Actual route is $actualRoute, but expected route is $expectedRoute"

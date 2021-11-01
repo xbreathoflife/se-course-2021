@@ -1,7 +1,18 @@
 package ru.hse.smartUniversity
 
-fun findRoute(@Suppress("UNUSED_PARAMETER") map:    UniversityMap,
-              @Suppress("UNUSED_PARAMETER") start:  String,
-              @Suppress("UNUSED_PARAMETER") finish: String): Array<String>? {
-    return if (start == finish) emptyArray() else arrayOf(finish)
+fun findRoute(map: UniversityMap, start: String, finish: String): List<String> {
+    val route = ArrayList<String>()
+    val visited = HashSet<String>()
+    var curRoom = start
+    while (curRoom != finish) {
+        visited.add(curRoom)
+        for (room in map.neighbors(curRoom)) {
+            if (!visited.contains(room)) {
+                curRoom = room
+                break
+            }
+        }
+        route.add(curRoom)
+    }
+    return route
 }
