@@ -20,4 +20,7 @@ class UniversityMap {
 
     fun neighbors(name: String): List<String> =
         rooms[name]?.neighbors?.map { it.name } ?: listOf()
+
+    fun getAllRooms(): List<String> =
+        rooms.keys.toList()
 }
