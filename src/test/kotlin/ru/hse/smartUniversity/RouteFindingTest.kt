@@ -49,13 +49,24 @@ internal class RouteFindingTest {
             mapBig.connect("102", "ROOT")
             mapBig.connect("ROOT", "106")
 
+            val mapWeighted = UniversityMap()
+            mapWeighted.addRoom("101")
+            mapWeighted.addRoom("102")
+            mapWeighted.addRoom("103")
+            mapWeighted.addRoom("104")
+            mapWeighted.connect("101", "104", 5)
+            mapWeighted.connect("101", "102", 1)
+            mapWeighted.connect("102", "103", 1)
+            mapWeighted.connect("103", "104", 1)
+
             return listOf(
                 Arguments.of(mapSingle, "101", "101", emptyList<String>()),
                 Arguments.of(mapTwoRooms, "101", "102", arrayListOf("102")),
                 Arguments.of(mapLineRooms, "101", "104", arrayListOf("102", "103", "104")),
                 Arguments.of(mapCycle, "101", "103", arrayListOf("103")),
                 Arguments.of(mapCycle, "101", "102", arrayListOf("102")),
-                Arguments.of(mapBig, "101", "106", arrayListOf("102", "ROOT", "106"))
+                Arguments.of(mapBig, "101", "106", arrayListOf("102", "ROOT", "106")),
+                Arguments.of(mapWeighted, "101", "104", arrayListOf("102", "103", "104")),
             )
         }
     }

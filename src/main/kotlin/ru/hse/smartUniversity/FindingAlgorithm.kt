@@ -3,7 +3,7 @@ package ru.hse.smartUniversity
 import java.util.*
 
 class FindingAlgorithm {
-    private var root = "ROOT"
+    private var root = UUID.randomUUID().toString()
     private var parents = mutableMapOf<String, String>()
 
     private fun distInitialization(map: UniversityMap): MutableMap<String, Int> {
