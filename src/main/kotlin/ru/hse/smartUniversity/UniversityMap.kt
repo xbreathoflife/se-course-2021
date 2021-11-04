@@ -1,7 +1,7 @@
 package ru.hse.smartUniversity
 
-open class UniversityMap {
-    protected data class Room(val name: String) {
+class UniversityMap {
+    private data class Room(val name: String) {
         val neighbors = mutableSetOf<Room>()
         val distances = mutableMapOf<Room, Int>()
     }
