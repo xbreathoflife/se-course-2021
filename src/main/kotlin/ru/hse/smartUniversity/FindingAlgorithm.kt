@@ -10,23 +10,24 @@ class FindingAlgorithm {
         val dist = mutableMapOf<String, Int>()
         val rooms = map.getAllRooms()
         for (room in rooms)
-            dist[room] = -1
+            dist[room] = Int.MAX_VALUE
         return dist
     }
 
     fun bfs(map: UniversityMap, start: String) {
-        val roomsQueue = LinkedList<String>()
-        roomsQueue.add(start)
+        val compareByWeight: Comparator<Pair<String, Int>> = compareBy { it.second }
+        val roomsQueue = PriorityQueue(compareByWeight)
+        roomsQueue.add(start to 0)
         parents[start] = root
         val dist = distInitialization(map)
         dist[start] = 0
         while (!roomsQueue.isEmpty()) {
             val curRoom = roomsQueue.remove()
-            for (neigh in map.neighbors(curRoom)) {
-                if (dist[neigh] == -1) {
-                    dist[neigh] = dist[curRoom]!! + 1
-                    parents[neigh] = curRoom
-                    roomsQueue.add(neigh)
+            for (neigh in map.neighbors(curRoom.first)) {
+                if (dist[neigh]!! > dist[curRoom.first]!! + map.getDist(curRoom.first, neigh)) {
+                    dist[neigh] = dist[curRoom.first]!! + map.getDist(curRoom.first, neigh)
+                    parents[neigh] = curRoom.first
+                    roomsQueue.add(neigh to dist.getValue(neigh))
                 }
             }
         }
