@@ -8,16 +8,16 @@ class FindingAlgorithm {
     private var root = UUID.randomUUID().toString()
     private var parents = mutableMapOf<String, String>()
 
-    private fun distInitialization(map: UniversityMap): MutableMap<String, Int> {
-        val dist = mutableMapOf<String, Int>()
+    private fun distInitialization(map: UniversityMap): MutableMap<String, Long> {
+        val dist = mutableMapOf<String, Long>()
         val rooms = map.getAllRooms()
         for (room in rooms)
-            dist[room] = Int.MAX_VALUE
+            dist[room] = Long.MAX_VALUE
         return dist
     }
 
     fun bfs(map: UniversityMap, start: String) {
-        val compareByWeight: Comparator<Pair<String, Int>> = compareBy { it.second }
+        val compareByWeight: Comparator<Pair<String, Long>> = compareBy { it.second }
         val roomsQueue = PriorityQueue(compareByWeight)
         roomsQueue.add(start to 0)
         parents[start] = root
@@ -74,8 +74,8 @@ class FindingAlgorithm {
         return allRoutes
     }
 
-    fun calculateWeight(map: UniversityMap, route: List<String>, start: String): Int {
-        var weight = 0
+    fun calculateWeight(map: UniversityMap, route: List<String>, start: String): Long {
+        var weight = 0L
         var prev = start
         for (room in route) {
             weight += map.getDist(room, prev)
@@ -86,13 +86,13 @@ class FindingAlgorithm {
 
     fun findMinRoutes(map: UniversityMap, start: String, routes: List<List<String>>): MutableList<List<String>>{
         val dists = routes.map { route: List<String> -> calculateWeight(map, route, start) }
-        var min_dist = dists.minOrNull()
-        val min_routes = mutableListOf<List<String>>()
+        val minDist = dists.minOrNull()
+        val minRoutes = mutableListOf<List<String>>()
         for (i in dists.indices) {
-            if (dists[i] == min_dist) {
-                min_routes.add(routes[i])
+            if (dists[i] == minDist) {
+                minRoutes.add(routes[i])
             }
         }
-        return min_routes
+        return minRoutes
     }
 }

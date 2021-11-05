@@ -114,6 +114,18 @@ internal class RouteFindingTest {
             mapWithWeight.connect("102", "103")
             mapWithWeight.connect("103", "101", 5)
 
+            val mapCrossbar = UniversityMap()
+            mapCrossbar.addRoom("101")
+            mapCrossbar.addRoom("102")
+            mapCrossbar.addRoom("103")
+            mapCrossbar.addRoom("104")
+            mapCrossbar.connect("101", "102", 2)
+            mapCrossbar.connect("101", "103", 5)
+            mapCrossbar.connect("102", "104", 5)
+            mapCrossbar.connect("103", "104", 2)
+            mapCrossbar.connect("102", "103", 2)
+            mapCrossbar.connect("101", "104", 6)
+
             val mapWithBigWeights = UniversityMap()
             mapWithBigWeights.addRoom("101")
             mapWithBigWeights.addRoom("102")
@@ -126,7 +138,8 @@ internal class RouteFindingTest {
                 Arguments.of(mapTwoRooms, "101", "102", listOf(arrayListOf("102"))),
                 Arguments.of(mapDiamond, "101", "104", listOf(arrayListOf("102", "104"), arrayListOf("103", "104"))),
                 Arguments.of(mapWithWeight, "101", "102", listOf(arrayListOf("102"))),
-                Arguments.of(mapWithBigWeights, "101", "102", listOf(arrayListOf("102")))
+                Arguments.of(mapWithBigWeights, "101", "102", listOf(arrayListOf("102"))),
+                Arguments.of(mapCrossbar, "101", "104", listOf(arrayListOf("102", "103", "104"), arrayListOf("104"))),
             )
         }
     }
