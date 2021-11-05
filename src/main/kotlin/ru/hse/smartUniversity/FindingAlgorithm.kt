@@ -26,8 +26,10 @@ class FindingAlgorithm {
         while (!roomsQueue.isEmpty()) {
             val curRoom = roomsQueue.remove()
             for (neigh in map.neighbors(curRoom.first)) {
-                if (dist[neigh]!! > dist[curRoom.first]!! + map.getDist(curRoom.first, neigh)) {
-                    dist[neigh] = dist[curRoom.first]!! + map.getDist(curRoom.first, neigh)
+                val nextDist = map.getDist(curRoom.first, neigh)
+                if (nextDist < 0) throw AlgorithmException()
+                if (dist[neigh]!! > dist[curRoom.first]!! + nextDist) {
+                    dist[neigh] = dist[curRoom.first]!! + nextDist
                     parents[neigh] = curRoom.first
                     roomsQueue.add(neigh to dist.getValue(neigh))
                 }
