@@ -5,7 +5,6 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.lang.Exception
 
 internal class RouteFindingTest {
 
@@ -177,7 +176,12 @@ internal class RouteFindingTest {
 
     @ParameterizedTest
     @MethodSource("multiple_routes")
-    fun testMultipleRouteFinding(map: UniversityMap, start: String, finish: String, expectedRoutes: List<List<String>>) {
+    fun testMultipleRouteFinding(
+        map: UniversityMap,
+        start: String,
+        finish: String,
+        expectedRoutes: List<List<String>>
+    ) {
         val actualRoutes = findAllRoutes(map, start, finish)
         Assertions.assertEquals(
             expectedRoutes.toSet(),
