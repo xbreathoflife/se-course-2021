@@ -88,6 +88,29 @@ internal class RouteFindingTest {
                 Arguments.of(mapWrongWeightedRoute, "101", "102")
             )
         }
+
+        @JvmStatic
+        fun multiple_routes(): List<Arguments> {
+            val mapTwoRooms = UniversityMap()
+            mapTwoRooms.addRoom("101")
+            mapTwoRooms.addRoom("102")
+            mapTwoRooms.connect("101", "102")
+
+            val mapDiamond = UniversityMap()
+            mapDiamond.addRoom("101")
+            mapDiamond.addRoom("102")
+            mapDiamond.addRoom("103")
+            mapDiamond.addRoom("104")
+            mapDiamond.connect("101", "102")
+            mapDiamond.connect("101", "103")
+            mapDiamond.connect("102", "104")
+            mapDiamond.connect("103", "104")
+
+            return listOf(
+                Arguments.of(mapTwoRooms, "101", "102", listOf(arrayListOf("102"))),
+                Arguments.of(mapDiamond, "101", "104", listOf(arrayListOf("102", "104"), arrayListOf("103", "104")))
+            )
+        }
     }
 
     @ParameterizedTest
@@ -105,5 +128,16 @@ internal class RouteFindingTest {
     @MethodSource("routes_exceptions")
     fun testRouteFindingException(map: UniversityMap, start: String, finish: String) {
         assertThrows<AlgorithmException> { findRoute(map, start, finish) }
+    }
+
+    @ParameterizedTest
+    @MethodSource("multiple_routes")
+    fun testMultipleRouteFinding(map: UniversityMap, start: String, finish: String, expectedRoutes: List<List<String>>) {
+        val actualRoutes = findAllRoutes(map, start, finish)
+        Assertions.assertEquals(
+            expectedRoutes,
+            actualRoutes,
+            "Routes don't equal! Actual route is $actualRoutes, but expected route is $expectedRoutes"
+        )
     }
 }
