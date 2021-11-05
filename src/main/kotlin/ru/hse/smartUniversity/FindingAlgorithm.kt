@@ -1,8 +1,11 @@
 package ru.hse.smartUniversity
 
-import java.util.*
+import java.util.UUID
+import java.util.PriorityQueue
+import java.util.LinkedList
+import kotlin.Comparator
 
-class AlgorithmException: Exception()
+class AlgorithmException : Exception()
 
 class FindingAlgorithm {
     private var root = UUID.randomUUID().toString()
@@ -88,7 +91,7 @@ class FindingAlgorithm {
         return weight
     }
 
-    fun findMinRoutes(map: UniversityMap, start: String, routes: Set<List<String>>): Set<List<String>>{
+    fun findMinRoutes(map: UniversityMap, start: String, routes: Set<List<String>>): Set<List<String>> {
         val dists = routes.map { route: List<String> -> calculateWeight(map, route, start) }
         val minDist = dists.minOrNull()
         val minRoutes = mutableSetOf<List<String>>()
