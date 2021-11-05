@@ -2,6 +2,8 @@ package ru.hse.smartUniversity
 
 import java.util.*
 
+class AlgorithmException: Exception()
+
 class FindingAlgorithm {
     private var root = UUID.randomUUID().toString()
     private var parents = mutableMapOf<String, String>()
@@ -15,6 +17,7 @@ class FindingAlgorithm {
     }
 
     fun bfs(map: UniversityMap, start: String) {
+        return
         val compareByWeight: Comparator<Pair<String, Int>> = compareBy { it.second }
         val roomsQueue = PriorityQueue(compareByWeight)
         roomsQueue.add(start to 0)
@@ -33,13 +36,13 @@ class FindingAlgorithm {
         }
     }
 
-    fun returnRoute(finish: String): List<String>? {
+    fun returnRoute(finish: String): List<String> {
         val route = LinkedList<String>()
         var curRoom = finish
         while (parents[curRoom] != root) {
             route.add(curRoom)
             if (parents[curRoom] == null) {
-                return null
+                throw AlgorithmException()
             }
             curRoom = parents[curRoom]!!
         }

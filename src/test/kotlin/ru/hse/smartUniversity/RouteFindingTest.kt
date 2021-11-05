@@ -1,9 +1,11 @@
 package ru.hse.smartUniversity
 
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import java.lang.Exception
 
 internal class RouteFindingTest {
 
@@ -59,20 +61,6 @@ internal class RouteFindingTest {
             mapWeighted.connect("102", "103", 1)
             mapWeighted.connect("103", "104", 1)
 
-            val mapNoRoute = UniversityMap()
-            mapNoRoute.addRoom("101")
-            mapNoRoute.addRoom("102")
-
-            val mapTwoRoutes = UniversityMap()
-            mapTwoRoutes.addRoom("101")
-            mapTwoRoutes.addRoom("102")
-            mapTwoRoutes.addRoom("103")
-            mapTwoRoutes.addRoom("104")
-            mapTwoRoutes.connect("101", "102", 2)
-            mapTwoRoutes.connect("102", "103", 4)
-            mapTwoRoutes.connect("103", "104", 3)
-            mapTwoRoutes.connect("101", "104", 3)
-
             return listOf(
                 Arguments.of(mapSingle, "101", "101", emptyList<String>()),
                 Arguments.of(mapTwoRooms, "101", "102", arrayListOf("102")),
@@ -80,10 +68,24 @@ internal class RouteFindingTest {
                 Arguments.of(mapCycle, "101", "103", arrayListOf("103")),
                 Arguments.of(mapCycle, "101", "102", arrayListOf("102")),
                 Arguments.of(mapBig, "101", "106", arrayListOf("102", "ROOT", "106")),
-                Arguments.of(mapWeighted, "101", "104", arrayListOf("102", "103", "104")),
-                Arguments.of(mapNoRoute, "101", "102", listOf("Route not found")),
-                Arguments.of(mapTwoRoutes, "101", "103",
-                    arrayListOf(arrayListOf("102", "103"), arrayListOf("104", "103")))
+                Arguments.of(mapWeighted, "101", "104", arrayListOf("102", "103", "104"))
+            )
+        }
+
+        @JvmStatic
+        fun routes_exceptions(): List<Arguments> {
+            val mapNoRoute = UniversityMap()
+            mapNoRoute.addRoom("101")
+            mapNoRoute.addRoom("102")
+
+            val mapWrongWeightedRoute = UniversityMap()
+            mapWrongWeightedRoute.addRoom("101")
+            mapWrongWeightedRoute.addRoom("102")
+            mapWrongWeightedRoute.connect("101", "102", -1)
+
+            return listOf(
+                Arguments.of(mapNoRoute, "101", "102"),
+                Arguments.of(mapWrongWeightedRoute, "101", "102")
             )
         }
     }
@@ -97,5 +99,11 @@ internal class RouteFindingTest {
             actualRoute,
             "Routes don't equal! Actual route is $actualRoute, but expected route is $expectedRoute"
         )
+    }
+
+    @ParameterizedTest
+    @MethodSource("routes_exceptions")
+    fun testRouteFindingException(map: UniversityMap, start: String, finish: String) {
+        assertThrows<AlgorithmException> { findRoute(map, start, finish) }
     }
 }
