@@ -8,6 +8,5 @@ fun findRoute(map: UniversityMap, start: String, finish: String): List<String> {
 
 fun findAllRoutes(map: UniversityMap, start: String, finish: String): List<List<String>> {
     val algorithm = FindingAlgorithm()
-    algorithm.bfs(map, start)
-    return listOf(algorithm.returnRoute(finish))
+    return algorithm.findAllRoutes(map, start, finish).map { it.drop(1) }
 }

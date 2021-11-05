@@ -50,4 +50,27 @@ class FindingAlgorithm {
         route.reverse()
         return route
     }
+
+    fun findAllRoutes(map: UniversityMap, start: String, finish: String): MutableList<List<String>> {
+        val route = listOf(start)
+        val roomsQueue = LinkedList<List<String>>()
+        val allRoutes = mutableListOf<List<String>>()
+        roomsQueue.add(route)
+        while (!roomsQueue.isEmpty()) {
+            val tmpRoute = roomsQueue.remove()
+            val lastRoom = tmpRoute[tmpRoute.lastIndex]
+            if (lastRoom == finish) {
+                allRoutes.add(tmpRoute)
+            }
+
+            for (neigh in map.neighbors(lastRoom)) {
+                if (neigh !in tmpRoute) {
+                    val newRoute = tmpRoute.toMutableList()
+                    newRoute.add(neigh)
+                    roomsQueue.add(newRoute)
+                }
+            }
+        }
+        return allRoutes
+    }
 }
