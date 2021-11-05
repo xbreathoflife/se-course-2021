@@ -78,7 +78,11 @@ class FindingAlgorithm {
         var weight = 0L
         var prev = start
         for (room in route) {
-            weight += map.getDist(room, prev)
+            val cur_weight = map.getDist(room, prev)
+            if (cur_weight < 0) {
+                throw AlgorithmException()
+            }
+            weight += cur_weight
             prev = room
         }
         return weight
