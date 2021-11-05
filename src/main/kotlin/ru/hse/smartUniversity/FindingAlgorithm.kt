@@ -51,10 +51,10 @@ class FindingAlgorithm {
         return route
     }
 
-    fun findAllRoutes(map: UniversityMap, start: String, finish: String): MutableList<List<String>> {
+    fun findAllRoutes(map: UniversityMap, start: String, finish: String): Set<List<String>> {
         val route = listOf(start)
         val roomsQueue = LinkedList<List<String>>()
-        val allRoutes = mutableListOf<List<String>>()
+        val allRoutes = mutableSetOf<List<String>>()
         roomsQueue.add(route)
         while (!roomsQueue.isEmpty()) {
             val tmpRoute = roomsQueue.remove()
@@ -74,7 +74,7 @@ class FindingAlgorithm {
         return allRoutes
     }
 
-    fun calculateWeight(map: UniversityMap, route: List<String>, start: String): Long {
+    private fun calculateWeight(map: UniversityMap, route: List<String>, start: String): Long {
         var weight = 0L
         var prev = start
         for (room in route) {
@@ -84,13 +84,13 @@ class FindingAlgorithm {
         return weight
     }
 
-    fun findMinRoutes(map: UniversityMap, start: String, routes: List<List<String>>): MutableList<List<String>>{
+    fun findMinRoutes(map: UniversityMap, start: String, routes: Set<List<String>>): Set<List<String>>{
         val dists = routes.map { route: List<String> -> calculateWeight(map, route, start) }
         val minDist = dists.minOrNull()
-        val minRoutes = mutableListOf<List<String>>()
+        val minRoutes = mutableSetOf<List<String>>()
         for (i in dists.indices) {
             if (dists[i] == minDist) {
-                minRoutes.add(routes[i])
+                minRoutes.add(routes.elementAt(i))
             }
         }
         return minRoutes

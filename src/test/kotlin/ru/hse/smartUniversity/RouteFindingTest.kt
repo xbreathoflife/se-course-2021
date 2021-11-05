@@ -142,6 +142,20 @@ internal class RouteFindingTest {
                 Arguments.of(mapCrossbar, "101", "104", listOf(arrayListOf("102", "103", "104"), arrayListOf("104"))),
             )
         }
+
+        @JvmStatic
+        fun multiple_routes_exceptions(): List<Arguments> {
+            val mapWrongWeightedRoute = UniversityMap()
+            mapWrongWeightedRoute.addRoom("101")
+            mapWrongWeightedRoute.addRoom("102")
+            mapWrongWeightedRoute.addRoom("103")
+            mapWrongWeightedRoute.connect("101", "102", -1)
+            mapWrongWeightedRoute.connect("102", "103", 1)
+
+            return listOf(
+                Arguments.of(mapWrongWeightedRoute, "101", "103")
+            )
+        }
     }
 
     @ParameterizedTest
@@ -166,9 +180,15 @@ internal class RouteFindingTest {
     fun testMultipleRouteFinding(map: UniversityMap, start: String, finish: String, expectedRoutes: List<List<String>>) {
         val actualRoutes = findAllRoutes(map, start, finish)
         Assertions.assertEquals(
-            expectedRoutes,
+            expectedRoutes.toSet(),
             actualRoutes,
             "Routes don't equal! Actual route is $actualRoutes, but expected route is $expectedRoutes"
         )
+    }
+
+    @ParameterizedTest
+    @MethodSource("multiple_routes_exceptions")
+    fun testMultipleRouteFindingException(map: UniversityMap, start: String, finish: String) {
+        assertThrows<AlgorithmException> { findAllRoutes(map, start, finish) }
     }
 }
