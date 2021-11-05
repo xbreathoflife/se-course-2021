@@ -108,7 +108,7 @@ internal class RouteFindingTest {
 
             return listOf(
                 Arguments.of(mapTwoRooms, "101", "102", listOf(arrayListOf("102"))),
-                Arguments.of(mapDiamond, "101", "102", listOf(arrayListOf("102", "104"), arrayListOf("103", "104")))
+                Arguments.of(mapDiamond, "101", "104", listOf(arrayListOf("102", "104"), arrayListOf("103", "104")))
             )
         }
     }
