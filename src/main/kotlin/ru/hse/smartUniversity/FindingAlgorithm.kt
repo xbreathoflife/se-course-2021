@@ -33,11 +33,14 @@ class FindingAlgorithm {
         }
     }
 
-    fun returnRoute(finish: String): List<String> {
+    fun returnRoute(finish: String): List<String>? {
         val route = LinkedList<String>()
         var curRoom = finish
         while (parents[curRoom] != root) {
             route.add(curRoom)
+            if (parents[curRoom] == null) {
+                return null
+            }
             curRoom = parents[curRoom]!!
         }
         route.reverse()
