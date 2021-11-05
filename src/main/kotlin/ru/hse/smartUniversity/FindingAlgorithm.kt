@@ -73,4 +73,26 @@ class FindingAlgorithm {
         }
         return allRoutes
     }
+
+    fun calculateWeight(map: UniversityMap, route: List<String>, start: String): Int {
+        var weight = 0
+        var prev = start
+        for (room in route) {
+            weight += map.getDist(room, prev)
+            prev = room
+        }
+        return weight
+    }
+
+    fun findMinRoutes(map: UniversityMap, start: String, routes: List<List<String>>): MutableList<List<String>>{
+        val dists = routes.map { route: List<String> -> calculateWeight(map, route, start) }
+        var min_dist = dists.minOrNull()
+        val min_routes = mutableListOf<List<String>>()
+        for (i in dists.indices) {
+            if (dists[i] == min_dist) {
+                min_routes.add(routes[i])
+            }
+        }
+        return min_routes
+    }
 }
