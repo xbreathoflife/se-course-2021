@@ -15,6 +15,11 @@ ktlint {
     enableExperimentalRules.set(true)
 }
 
+jacoco {
+    toolVersion = "0.8.7"
+    reportsDirectory.set(layout.buildDirectory.dir("customJacocoReportDir"))
+}
+
 compileKotlin { kotlinOptions.jvmTarget = 1.8 }
 
 dependencies {
@@ -37,9 +42,4 @@ tasks.jacocoTestReport {
         csv.required.set(true)
         html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
     }
-}
-
-jacoco {
-    toolVersion = "0.8.7"
-    reportsDirectory.set(layout.buildDirectory.dir("customJacocoReportDir"))
 }
