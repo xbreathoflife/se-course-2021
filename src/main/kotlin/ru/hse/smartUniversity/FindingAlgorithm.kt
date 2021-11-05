@@ -17,7 +17,6 @@ class FindingAlgorithm {
     }
 
     fun bfs(map: UniversityMap, start: String) {
-        return
         val compareByWeight: Comparator<Pair<String, Int>> = compareBy { it.second }
         val roomsQueue = PriorityQueue(compareByWeight)
         roomsQueue.add(start to 0)
