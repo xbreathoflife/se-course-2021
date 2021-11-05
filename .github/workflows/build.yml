@@ -26,7 +26,11 @@ jobs:
       - name: Run tests
         run: ./gradlew test
 
-      - name: Generate JaCoCo Badge
-        uses: cicirello/jacoco-badge-generator@v2
+      - name: Generate JaCoCo report
+        run: ./gradlew test jacocoTestReport
+
+      - name: Upload JaCoCo coverage report
+        uses: actions/upload-artifact@v2
         with:
-          jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
+          name: jacoco-report
+          path: build/reports/jacoco/test/html
