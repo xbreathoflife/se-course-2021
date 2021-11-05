@@ -1,8 +1,8 @@
 package ru.hse.smartUniversity
 
-import java.util.UUID
-import java.util.PriorityQueue
 import java.util.LinkedList
+import java.util.PriorityQueue
+import java.util.UUID
 import kotlin.Comparator
 
 class AlgorithmException : Exception()
