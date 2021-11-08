@@ -1,4 +1,6 @@
 # [Smart university](https://docs.google.com/presentation/d/1Wpw_my4mmOnnsPz0uM-tKRR_Cz3yJxvJiGZvk23Va1k/edit?usp=sharing)
+[![Build](https://github.com/xbreathoflife/se-course-2021/actions/workflows/build.yml/badge.svg)](https://github.com/xbreathoflife/se-course-2021/actions/workflows/build.yml)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Description
 
@@ -7,4 +9,4 @@
 ## Authors
 - [Tarabonda German](http://t.me/kot239)
 - [Gordeeva Tatyana](http://t.me/sarnatk)
-- [Obryadina Aleksandra](http://t.me/enotik30)
+- [Obriadina Aleksandra](http://t.me/enotik30)
