@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.1] - 2021-11-08
+## [v0.0.1] - 2021-11-09
 ### Added
 - Add CHANGELOG
+- Ability to optimize of movements of students
