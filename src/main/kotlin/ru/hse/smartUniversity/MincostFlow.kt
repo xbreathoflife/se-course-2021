@@ -58,10 +58,12 @@ class MincostFlow {
         while (flow != null) {
             var cur = finish
             while (cur != start) {
-                funcs.put(UniversityFlowMap.Passage(parents[cur], cur),
+                funcs.put(
+                    UniversityFlowMap.Passage(parents[cur], cur),
                     funcs[UniversityFlowMap.Passage(parents[cur], cur)]!! + flow
                 )
-                funcs.put(UniversityFlowMap.Passage(cur, parents[cur]),
+                funcs.put(
+                    UniversityFlowMap.Passage(cur, parents[cur]),
                     funcs[UniversityFlowMap.Passage(cur, parents[cur])]!! - flow
                 )
                 weight += map.getTime(parents[cur]!!, cur) * flow
