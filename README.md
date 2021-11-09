@@ -1,8 +1,12 @@
-# se-course-2021
+# [Smart university](https://docs.google.com/presentation/d/1Wpw_my4mmOnnsPz0uM-tKRR_Cz3yJxvJiGZvk23Va1k/edit?usp=sharing)
+[![Build](https://github.com/xbreathoflife/se-course-2021/actions/workflows/build.yml/badge.svg)](https://github.com/xbreathoflife/se-course-2021/actions/workflows/build.yml)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## [Умный университет](https://docs.google.com/presentation/d/1Wpw_my4mmOnnsPz0uM-tKRR_Cz3yJxvJiGZvk23Va1k/edit?usp=sharing)
+## Description
 
-### Команда
-- [Тарабонда Герман](http://t.me/kot239)
-- [Гордеева Татьяна](http://t.me/sarnatk)
-- [Обрядина Александра](http://t.me/enotik30)
+"Smart university" is a simple program that can help students and professors find the fastest way to the right audience. 
+
+## Authors
+- [Tarabonda German](http://t.me/kot239)
+- [Gordeeva Tatyana](http://t.me/sarnatk)
+- [Obriadina Aleksandra](http://t.me/enotik30)
