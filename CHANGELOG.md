@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.0.2] - 2021-11-09
+### Added
+- Add ability to optimize movements with times
+
+### Changed
+- Change map interface
+
 ## [v0.0.1] - 2021-11-09
 ### Added
 - Add CHANGELOG
