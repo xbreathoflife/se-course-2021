@@ -12,7 +12,7 @@ class FordFulkerson {
         while (queue.isNotEmpty()) {
             val u = queue.remove()
             for (v in graph.neighbors(u)) {
-                if (!visited.getOrDefault(v, false) && graph.getDist(u, v) > 0) {
+                if (!visited.getOrDefault(v, false) && graph.getCapacity(u, v) > 0) {
                     queue.add(v)
                     p[v] = u
                     visited[v] = true
@@ -35,7 +35,7 @@ class FordFulkerson {
                 checkNotNull(v)
                 u = p.getValue(v)
                 checkNotNull(u)
-                pathFlow = pathFlow.coerceAtMost(map.getDist(u, v))
+                pathFlow = pathFlow.coerceAtMost(map.getCapacity(u, v))
                 v = u
             }
             v = t
@@ -43,8 +43,8 @@ class FordFulkerson {
                 checkNotNull(v)
                 u = p.getValue(v)
                 checkNotNull(u)
-                map.changeDist(u, v, -pathFlow)
-                map.changeDist(v, u, pathFlow)
+                map.changeCapacity(u, v, -pathFlow)
+                map.changeCapacity(v, u, pathFlow)
                 v = u
             }
 

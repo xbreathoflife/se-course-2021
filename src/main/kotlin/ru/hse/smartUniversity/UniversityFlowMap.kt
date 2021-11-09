@@ -3,15 +3,15 @@ package ru.hse.smartUniversity
 class UniversityFlowMap {
     private data class Room(val name: String) {
         val neighbors = mutableSetOf<Room>()
-        val distances = mutableMapOf<Room, Long>()
+        val capacity = mutableMapOf<Room, Long>()
     }
 
     private val rooms = mutableMapOf<String, Room>()
-    private fun connect(first: Room?, second: Room?, dist: Long) {
+    private fun connect(first: Room?, second: Room?, capacity: Long) {
         if (second != null) first?.neighbors?.add(second)
-        if (second != null) first?.distances?.put(second, dist)
+        if (second != null) first?.capacity?.put(second, capacity)
         if (first != null) second?.neighbors?.add(first)
-        if (first != null) second?.distances?.put(first, dist)
+        if (first != null) second?.capacity?.put(first, capacity)
     }
 
     fun addRoom(name: String) {
@@ -24,12 +24,12 @@ class UniversityFlowMap {
     fun neighbors(name: String): List<String> =
         rooms[name]?.neighbors?.map { it.name } ?: listOf()
 
-    fun getDist(from: String, to: String): Long =
-        rooms[from]?.distances?.get(rooms[to]) ?: -1
+    fun getCapacity(from: String, to: String): Long =
+        rooms[from]?.capacity?.get(rooms[to]) ?: -1
 
-    fun changeDist(from: String, to: String, dist: Long) {
-        val curDist = getDist(from, to)
-        rooms[from]?.distances?.replace(rooms.getValue(to), curDist + dist)
+    fun changeCapacity(from: String, to: String, dist: Long) {
+        val curDist = getCapacity(from, to)
+        rooms[from]?.capacity?.replace(rooms.getValue(to), curDist + dist)
     }
 
     fun getAllRooms(): List<String> =
