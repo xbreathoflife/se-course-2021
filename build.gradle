@@ -2,10 +2,10 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.31'
     id("org.jlleitschuh.gradle.ktlint") version "10.0.0" apply true
     id 'jacoco'
-    id 'application'
+    id 'java'
 }
 
-group 'org.example'
+group 'ru.hse.smartUniversity'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -35,7 +35,9 @@ tasks.jacocoTestReport {
     }
 }
 
-application {
-    mainClass = 'ru.hse.smartUniversity.MainKt'
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "MainKt"
+    }
 }
 
