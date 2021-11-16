@@ -1,5 +1,7 @@
 package ru.hse.smartUniversity
 
-fun main() {
-    println("Very smart")
+class Main {
+    fun main() {
+        println("Very smart")
+    }
 }
