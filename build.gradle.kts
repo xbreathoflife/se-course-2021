@@ -1,11 +1,11 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.5.31'
+    kotlin("jvm") version "1.5.31"
     id("org.jlleitschuh.gradle.ktlint") version "10.0.0" apply true
-    id 'jacoco'
+    id("jacoco")
 }
 
-group 'org.example'
-version '1.5.31'
+group = "ru.hse.smartUniversity"
+version = "1.5.31"
 
 repositories {
     mavenCentral()
@@ -14,8 +14,6 @@ repositories {
 ktlint {
     enableExperimentalRules.set(true)
 }
-
-compileKotlin { kotlinOptions.jvmTarget = 1.8 }
 
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.1")
@@ -34,8 +32,8 @@ tasks.jacocoTestReport {
     }
 }
 
-tasks.jar {
+tasks.withType<Jar> {
     manifest {
-        attributes "Main-Class": "ru.hse.smartUniversity.MainKt"
+        attributes["Main-Class"] = "ru.hse.smartUniversity.MainKt"
     }
 }
