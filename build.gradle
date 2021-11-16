@@ -34,7 +34,7 @@ tasks.jacocoTestReport {
     }
 }
 
-tasks.jar {
+jar {
     manifest {
         attributes(
             'Main-Class': 'ru.hse.smartUniversity.Main'
