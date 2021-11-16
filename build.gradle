@@ -39,4 +39,3 @@ tasks.jar {
         attributes "Main-Class": "ru.hse.smartUniversity.MainKt"
     }
 }
-
