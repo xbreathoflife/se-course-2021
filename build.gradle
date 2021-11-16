@@ -37,7 +37,7 @@ tasks.jacocoTestReport {
 
 tasks.jar {
     manifest {
-        attributes["Main-Class"] = "ru.hse.smartUniversity.MainKt"
+        attributes["Main-Class"] = "MainKt"
     }
 }
 
