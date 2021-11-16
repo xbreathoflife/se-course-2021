@@ -2,10 +2,15 @@ plugins {
     kotlin("jvm") version "1.5.31"
     id("org.jlleitschuh.gradle.ktlint") version "10.0.0" apply true
     id("jacoco")
+    application
 }
 
 group = "ru.hse.smartUniversity"
 version = "1.5.31"
+
+application {
+    mainClass.set("ru.hse.smartUniversity.MainKt")
+}
 
 repositories {
     mavenCentral()
