@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'org.example'
-version '1.0-SNAPSHOT'
+version '1.5.31'
 
 repositories {
     mavenCentral()
@@ -20,7 +20,7 @@ compileKotlin { kotlinOptions.jvmTarget = 1.8 }
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.1")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.1")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version")
     implementation("org.jacoco:org.jacoco.core:0.8.7")
 }
 
