@@ -9,7 +9,7 @@ Reqirements analysis of our app "Smart University"
 
 ## User cases
 
-![user_cases](/user_cases.png "User cases")
+![user_cases](/requirements/user_cases.png "User cases")
 
 ## User Stories
 
