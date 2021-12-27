@@ -4,7 +4,7 @@ plugins {
     id 'jacoco'
 }
 
-group 'org.example'
+group 'org.smart-university'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -19,9 +19,9 @@ compileKotlin { kotlinOptions.jvmTarget = 1.8 }
 
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.1")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation("org.jacoco:org.jacoco.core:0.8.7")
+    implementation(kotlin("stdlib"))
 }
 
 tasks.test {

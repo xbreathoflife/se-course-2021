@@ -1,5 +1,5 @@
 package ru.hse.smartUniversity
 
 fun main() {
-    println("Very smart")
+    println("Welcome to smart university app")
 }
