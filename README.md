@@ -8,7 +8,7 @@
 Moreover, as all smart innovations do, this one provides an opportunity to use working space more profitable.
 There is a possibility to measure how crowded rooms are and hence to use electricity efficiently.
 
-You can also visit the [wiki]() page to find more information.
+You can also visit the [wiki](https://github.com/xbreathoflife/se-course-2021/wiki) page to find more information.
 
 ## Usage
 You can run project locally using this command:
