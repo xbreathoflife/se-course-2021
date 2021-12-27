@@ -1,8 +1,8 @@
 package ru.hse.smartUniversity
 
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 internal class RouteFindingTest {
 
